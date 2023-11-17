@@ -153,7 +153,7 @@ date       , open   , high   , low    , close  , volume
 #   dtypes: float64(5), int64(1), object(1)
 #   memory usage: 1.2+ KB
 
-df  = '?'
+df  = utils.csv_to_df(csv_cnts)
 
 # Again, this will not work
 #df = pd.read_csv(csv_cnts)
@@ -207,11 +207,8 @@ fmt = '%Y-%m-%d'
 # We can use assignment statements to convert columns
 #
 # Convert the elements in the Date column
-#df.loc[:, 'date']  = '?'
+#df.loc[:, 'date']  = pd.to_datetime(df.loc[:,'date'])
 
-# <solution>
-#df.loc[:, 'date'] = pd.to_datetime(df.loc[:, 'date']) # <comment>
-# </solution>
 
 #utils.pprint(df, "DF after converting date column")
 
@@ -262,30 +259,16 @@ fmt = '%Y-%m-%d'
 #   Illustrating the advantages of a datetime indexes 
 # ----------------------------------------------------------------------------
 # Select all data for a given year in one go
-df_2020  = '?'
-
-# <solution>
-#df_2020 = df.loc['2020']
-# </solution>
-
+df_2020  = df.loc['2020']
 utils.pprint(df_2020)
 
 # Select all data for a given month
-df_2020_11  = '?'
-
-# <solution>
-#df_2020_11 = df.loc['2020-11'] # <mask>
-# </solution>
-
+df_2020_11  = df.loc['2020-11']
 utils.pprint(df_2020_11)
 
 # Selecting date ranges using strings
-df_2020_11_0204  = '?'
-
-# <solution>
-#df_2020_11_0204 = df.loc['2020-11-02':'2020-11-04']
-# </solution>
-#utils.pprint(df_2020_11_0204)
+df_2020_11_0204  = df.loc['2020-11-02':'2020-11-04']
+utils.pprint(df_2020_11_0204)
 
 
 # ----------------------------------------------------------------------------
