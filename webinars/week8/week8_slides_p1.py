@@ -64,7 +64,7 @@ utils.pp_cfg.show_type = True
 # returns an instance of `dt.datetime` representing the current date/time.
 
 # Instance of `dt.datetime` with the current date/time
-dt_now = '?'
+dt_now = dt.datetime.now()
 
 
 # Aside: How can we print a representation of an object?
@@ -156,7 +156,7 @@ dt0 = dt.datetime(
 
 # We do not need to specify all the parameters (year, month, day are required)
 # Create a dt.datetime obj with year=2022, month=11, day=1
-dt1 = '?'
+dt1 = dt.datetime(2022,11,1)
 
 
 #utils.pprint(dt1, "dt1 is:\n", pretty=False)
@@ -172,8 +172,8 @@ dt1 = '?'
 # Lets create two other datetime instances:
 #   dt0 --> 2019-12-31 00:00:00
 #   dt1 --> 2020-01-01 00:00:00
-dt0  = '?'
-dt1  = '?'
+dt0  = dt.datetime(2019,12,31)
+dt1  = dt.datetime(2020,1,1)
 
 
 #utils.pprint(dt0, "dt0 is:\n", pretty=False)
@@ -210,7 +210,7 @@ then `new_delta` is:
 #   - `start` will be the starting date (same as above)
 #   - `delta` will be a period of 12 hours (same as new_delta)
 #   - `new_end` will be the ending date (same as `end` above)
-delta  = '?'
+delta  = dt.datetime(hours=12)
 
 
 # This is the new date
@@ -258,11 +258,15 @@ delta  = '?'
 #   Exercises (5 mins each)
 # ----------------------------------------------------------------------------
 # 1. For how many seconds have you been alive?
-
-
+bday = dt.datetime(1974,11,8,hour=8,minute=45)
+now = dt.datetime.now()
+alive = now -bday
+secs =alive.total_seconds()
 
 # 2. How old will you be in 1,340 days
-
+fut = now +da.timedelta(days=1340)
+alive = fut - bday
+age =alive.days/365
 
 # ---------------------------------------------------------------------------- 
 #   The `strftime` method
@@ -300,12 +304,12 @@ delta  = '?'
 # Convert to a **string** with the following formats
 #   2020-12-31
 #   Dec 31, 2020
-s1  = '?'
+s1  = date.strftime('%Y-%m-%d')
 # <example>
 #s1 = date.strftime('%Y-%m-%d')
 # </example>
 #print(s1)
-s2  = '?'
+s2  = date.strftime('%b %d, %Y')
 # <example>
 #s2 = date.strftime('%b %d, %Y')
 # </example>
