@@ -58,7 +58,7 @@ def print_df(df):
 #
 # Load the data contained in qan_prc_2020.csv to a DF
 # and then set the index using the .set_index method
-qan_naive_read  = '?'
+qan_naive_read  = pd.read_csv(QAN_PRC_CSV)
 # <example>
 #qan_naive_read  = pd.read_csv(QAN_PRC_CSV)
 #qan_naive_read.set_index('Date', inplace=True)
@@ -67,7 +67,7 @@ print_df(qan_naive_read)
 
 
 # Alternative 2: use the index_col parameter
-qan_better_read = '?'
+qan_better_read = pd.read_csv(QAN_PRC_CSV, index_col ='Date')
 # <example>
 #qan_better_read  = pd.read_csv(QAN_PRC_CSV, index_col='Date')
 # </example>
