@@ -254,7 +254,7 @@ label = '2020-01-30'
 #   2020-01-13    7.02  
 
 label_seq = ['2020-01-10', '2020-01-13']
-res  = '?'
+res  = ser.loc[label_seq]
 printit(res, f"ser.loc[{label_seq}]")
 
 
@@ -295,7 +295,7 @@ label_seq = ['2020-01-10', '2020-01-11']
 # IMPORTANT: ENDPOINTS ARE INCLUDED!!!
 start = '2020-01-10'
 end = '2020-01-13'
-res  = '?'
+res  = ser.loc['2020-01-10':'2020-01-13']
 printit(res, f"ser.loc['{start}':'{end}']")
 
 
@@ -308,7 +308,7 @@ printit(res, f"ser.loc['{start}':'{end}']")
 
 start = '3020-01-10'
 end = '2020-01-13'
-res  = '?'
+res  = ser.loc['3020-01-10':'2020-01-13']
 # <example>
 #res = ser.loc[start:end]
 # </example>
@@ -326,7 +326,7 @@ printit(res, f"ser.loc['{start}':'{end}']")
 # order), the interval of index labels is empty:
 start = 'start'
 end = 'end'
-res  = '?'
+res  = ser.loc[start:end]
 # <example>
 #res = ser.loc[start:end]
 # </example>
@@ -458,7 +458,7 @@ ser2 = ser.copy()
 #
 # The result should be 7.16
 pos = 0
-res  = '?'
+res  = ser.iloc[0]
 printit(res, f"ser.iloc[{pos}]")
 
 # ------------------------------------------------------------
@@ -485,7 +485,7 @@ printit(res, f"ser.iloc[{pos}]")
 #   2020-01-06    7.00
 
 pos_seq = [0, 2]
-res = '?'
+res = ser.iloc[pos_seq]
 printit(res, f"ser.iloc[{pos_seq}]")
 
 # ------------------------------------------------------------
@@ -518,7 +518,7 @@ printit(res, f"ser.iloc[{pos_seq}]")
 # Try it first!
 start = 0
 end = 2
-res  = '?'
+res  = ser.loc[0:2]
 printit(res, f"ser.iloc[{start}:{end}]:")
 
 # 
@@ -527,7 +527,7 @@ printit(res, f"ser.iloc[{start}:{end}]:")
 #
 start = 0
 end = 100000
-res  = '?'
+res  = ser.iloc[0:100000000]
 # <example>
 #res = ser.iloc[start:end]
 # </example>
@@ -540,7 +540,7 @@ printit(res, f"ser.iloc[{start}:{end}]")
 #
 start = -1
 end = 0
-res = '?'
+res = 'ser.iloc[::-1]
 # <example>
 #res = ser.iloc[start:end]
 # </example>
@@ -643,7 +643,7 @@ printit(res, f"ser.iloc[{start}:{end}]")
 # df.loc[row label, col label] --> scalar
 rlabel = '2020-01-02'
 clabel = 'close'
-res  = '?'
+res  = df.loc[rlabel,clabel]
 printit(res, f"df.loc[{rlabel}, {clabel}]")
 
 # Task: Suppose we want to select the following SERIES
@@ -1125,7 +1125,7 @@ printit(res)
 #
 rstart = '2020-01-10'
 rend = '2020-01-15'
-res = '?'
+res = df['2020-01-10':'2020-01-15']
 printit(res)
 
 
