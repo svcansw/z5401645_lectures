@@ -220,7 +220,7 @@ df = pd.DataFrame(data={'close': ser, 'bday': bday}, index=dates)
 # The result will be 7.00
 
 label = '2020-01-10'
-res  = '?'
+res  = ser.loc['2020-01-10']
 printit(res, f"ser.loc[{label}]:")
 
 
