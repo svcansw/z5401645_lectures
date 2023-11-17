@@ -154,7 +154,7 @@ def groupby_example0():
     # ---------------------------------------------------------------------------- 
     #   Creating groupby objects
     # ---------------------------------------------------------------------------- 
-    groups  = '?'
+    groups  = df.groupby('firm')
     # <example>
     #groups = df.groupby('firm')
     # </example>
@@ -164,7 +164,7 @@ def groupby_example0():
     # ----------------------------------------------------------------------------
     # The attribute "GroupBy.groups" -> Dict with groups
     # ----------------------------------------------------------------------------
-    obj = '?'
+    obj = groups.groups
     # <example>
     #groups = df.groupby('firm')
     #obj= groups.groups
@@ -219,7 +219,7 @@ def groupby_example0():
     # Then using the apply method
     df = mk_rec_df0()
     groups = df.groupby(by='firm')
-    res  = '?'
+    res  = groups.apply(len)
     # <example>
     #res = groups.apply(len) # <mask>
     # </example>
@@ -236,7 +236,7 @@ def groupby_example0():
 
     df = mk_rec_df0()
     groups = df.groupby(by='firm')
-    res  = '?'
+    res  = groups.apply(get_last)
     # <example>
     #res = groups.apply(get_last) # <mask>
     # <example>
@@ -255,7 +255,7 @@ def groupby_example0():
     # (includes missing values if any)
     df = mk_rec_df0() 
     groups = df.groupby('firm')
-    res  = '?'
+    res  = groups.count()
     # <example>
     #res = groups.count()
     # </example>
@@ -265,7 +265,7 @@ def groupby_example0():
     # Select last obs by group 
     df = mk_rec_df0()
     groups = df.groupby('firm')
-    res = '?'
+    res = df.groupby('firm').last()
     # <example>
     #res = df.groupby('firm').last() # <mark>
     # </example>
@@ -283,21 +283,21 @@ def groupby_example1():
     utils.pprint(df, "This is df:")
 
     # Split the data into groups
-    groups  = '?'
+    groups  = df.groupby(['firm', 'event_date'])
     # <example>
     #groups = df.groupby(['firm', 'event_date']) # <mask>
     # </example>
     utils.pprint(groups, "df.groupby(['firm', 'event_date']):\n")
 
     # Select the most recent obs for each group
-    res = '?'
+    res = groups.last()
     # <example>
     #res = groups.last()
     # </example>
     utils.pprint(res,  "groups.last():")
 
     # The index of the new DF is a MultiIndex
-    obj = '?'
+    obj = res.index
     # <example>
     #obj = res.index
     # </example>
@@ -375,7 +375,7 @@ def bool_example0():
     #   Using booleans to select rows 
     # ----------------------------------------------------------------------------
     # will be a series with boolean values
-    cond = '?'
+    cond = df.loc[:, 'action'] == 'up'
     # <example>
     #cond = df.loc[:, 'action'] == 'up'
     # </example>
@@ -384,7 +384,7 @@ def bool_example0():
 
     # We can use this series as an indexer:
     # A series of booleans can be used to select rows that meet the criteria
-    res  = '?'
+    res  = df.loc[cond] 
     # <example>
     #res = df.loc[cond] # <mask>
     # </example>
@@ -395,7 +395,7 @@ def bool_example0():
     #   Using booleans to select rows and cols
     # ----------------------------------------------------------------------------
     col_cond = [False, True, False]
-    res  = '?'
+    res  = df.loc[:, col_cond]
     # <example>
     #res = df.loc[:, col_cond] # <mask>
     #utils.pprint(df, "This is df:\n")
@@ -407,7 +407,7 @@ def bool_example0():
     #   Multiple criteria 
     # ----------------------------------------------------------------------------
     # Combine different criteria
-    res = '?'
+    res = df.loc[crit]
     # <example>
     #crit = (df.loc[:, 'action'] == 'up') | (df.loc[:, 'action'] == 'down')
     #res = df.loc[crit]
@@ -417,7 +417,7 @@ def bool_example0():
     # ----------------------------------------------------------------------------
     #   Using the `str.contains` method
     # ----------------------------------------------------------------------------
-    crit  = '?'
+    crit  = df.loc[:, 'action'].str.contains('up|down')
     # <example>
     #crit = df.loc[:, 'action'].str.contains('up|down') # <mask>
     #res = df.loc[crit]
