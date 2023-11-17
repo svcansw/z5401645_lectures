@@ -87,7 +87,7 @@ def example_joins():
         4   , R4 
         5   , R5 
         '''
-    right = '?'
+    right = utils.csv_to_df(right_cnts, index_col='idx')
     right = utils.csv_to_df(right_cnts, index_col='idx') # <mask>
     utils.pprint(right, "This is right:")
 
@@ -114,7 +114,7 @@ def example_joins():
     
     '''
     #
-    res  = '?'
+    res  = left.join(right, how='left')
     # <example>
     #res = left.join(right, how='left') # <mask>
     # </example>
@@ -131,7 +131,7 @@ def example_joins():
     | 3   | L3 |              | 5   | R5 |          | 5   | NaN | R5 |
     '''
 
-    res  = '?'
+    res  = left.join(right, how='right')
     # <example>
     #res = left.join(right, how='right') # <mask>
     # </example>
@@ -148,7 +148,7 @@ def example_joins():
     |3  | L3|               |5  | R5|           
     '''
 
-    res  = '?'
+    res  = left.join(right, how='inner')
     # <example>
     #res = left.join(right, how='inner') # <mask>
     # </example>
@@ -166,7 +166,7 @@ def example_joins():
                                                 |4  |NaN| R4|
                                                 |5  |NaN| R5|
     '''
-    res  = '?'
+    res  = left.join(right, how='outer')
     # <example>
     #res = left.join(right, how='outer') # <mask>
     # </example>
@@ -211,14 +211,14 @@ def example_df_plus_obj():
     utils.pprint(other_df, "The other_df:")
 
     # Pandas will align indexes and columns (as if outer join)
-    res = '?'
+    res =  base + other_df 
     # <example>
     #res = base + other_df  # <mask>
     # </example>
     utils.pprint(res, "base + other_df:")
 
     # df + series is different (align column index)
-    res  = '?'
+    res  = base + other_df.loc[:, 'R']
     # <example>
     #res = base + other_df.loc[:, 'R'] # <mask>
     # </example>
@@ -251,7 +251,7 @@ def example_ret_and_mkts():
     df_ret = utils.csv_to_df(cnts_ret_csv, index_col='date', parse_dates=['date'])
     utils.pprint(df_ret , "This is df_ret:")
 
-    combined = '?'
+    combined = df_ret.join(df_mkt, how='inner')
     # <example>
     #combined = df_ret.join(df_mkt, how='inner')
     # </example>
