@@ -64,10 +64,7 @@ utils.pp_cfg.show_type = True
 # returns an instance of `dt.datetime` representing the current date/time.
 
 # Instance of `dt.datetime` with the current date/time
-dt_now = '?'
-# <solution>
-#dt_now  = dt.datetime.now()
-# </solution>
+dt_now = dt.datetime.now()
 
 
 # Aside: How can we print a representation of an object?
@@ -159,15 +156,8 @@ dt0 = dt.datetime(
 
 # We do not need to specify all the parameters (year, month, day are required)
 # Create a dt.datetime obj with year=2022, month=11, day=1
-dt1 = '?'
+dt1 = dt.datetime(2022,11,1)
 
-# <solution>
-#dt1 = dt.datetime(
-#    year=2022,
-#    month=11,
-#    day=1,
-#)
-# </solution>
 
 #utils.pprint(dt1, "dt1 is:\n", pretty=False)
 #utils.pprint(dt1.year, 'dt1.year')
@@ -182,24 +172,17 @@ dt1 = '?'
 # Lets create two other datetime instances:
 #   dt0 --> 2019-12-31 00:00:00
 #   dt1 --> 2020-01-01 00:00:00
-dt0  = '?'
-dt1  = '?'
+dt0  = dt.datetime(2019,12,31)
+dt1  = dt.datetime(2020,1,1)
 
-# <solution>
-#dt0 = dt.datetime(year=2019, month=12, day=31)
-#dt1 = dt.datetime(year=2020, month=1, day=1)
-# </solution>
 
 #utils.pprint(dt0, "dt0 is:\n", pretty=False)
 #utils.pprint(dt1, "dt1 is:\n", pretty=False) 
 
 
 # Operations between datetime objects will return timedelta objects
-delta  = '?'
+#delta  = dt1 - dt0
 
-# <solution>
-#delta = dt1 - dt0
-# </solution>
 
 #msg = f"The operation:\n  {repr(dt1)} \n    - {repr(dt0)}\ngives:"
 #utils.pprint(delta, msg=msg)
@@ -227,11 +210,8 @@ then `new_delta` is:
 #   - `start` will be the starting date (same as above)
 #   - `delta` will be a period of 12 hours (same as new_delta)
 #   - `new_end` will be the ending date (same as `end` above)
-delta  = '?'
+delta  = dt.datetime(hours=12)
 
-# <solution>
-#delta = dt.timedelta(hours=12)
-# </solution>
 
 # This is the new date
 # <example>
@@ -278,38 +258,15 @@ delta  = '?'
 #   Exercises (5 mins each)
 # ----------------------------------------------------------------------------
 # 1. For how many seconds have you been alive?
-
-# <solution>
-bday = dt.datetime(1974, 11, 8, hour=8, minute=45)
-dt_now = dt.datetime.now()
-alive = dt_now - bday
-# Here is how the timedelta attributes days and seconds work:
-#  td.days --> Number of days in the interval
-#  td.seconds--> Number of seconds on top of the days in the interval
-#               ( 0 <= td.seconds < 86,400 secs)
-# Alternative 1:
-secs = (alive.days * 24 * 60 * 60) + alive.seconds
-# Alternative 2: Use the METHOD total_seconds
-#secs = alive.total_seconds()
-res = f"I have been alive for {secs:,.0f} secs"
-#utils.pprint(res)
-# </solution>
-
+bday = dt.datetime(1974,11,8,hour=8,minute=45)
+now = dt.datetime.now()
+alive = now -bday
+secs =alive.total_seconds()
 
 # 2. How old will you be in 1,340 days
-
-# <solution>
-# Time: 5 mins
-# First, compute the future date
-days = 1340
-future = dt.datetime.now() + dt.timedelta(days=days)
-# Then, the time you have been alive (timedelta)
-alive = future - bday
-# Then, calculate the number of years
-age = alive.days/365.
-res = f"In {days} days, I'll be {age:.2f} years"
-#utils.pprint(res)
-# </solution>
+fut = now +da.timedelta(days=1340)
+alive = fut - bday
+age =alive.days/365
 
 # ---------------------------------------------------------------------------- 
 #   The `strftime` method
@@ -347,12 +304,12 @@ res = f"In {days} days, I'll be {age:.2f} years"
 # Convert to a **string** with the following formats
 #   2020-12-31
 #   Dec 31, 2020
-s1  = '?'
+s1  = date.strftime('%Y-%m-%d')
 # <example>
 #s1 = date.strftime('%Y-%m-%d')
 # </example>
 #print(s1)
-s2  = '?'
+s2  = date.strftime('%b %d, %Y')
 # <example>
 #s2 = date.strftime('%b %d, %Y')
 # </example>
